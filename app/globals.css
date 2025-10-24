@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f8fafc;
+  --fg: #0f172a;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  @apply bg-[var(--bg)] text-[var(--fg)];
+}
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+.card {
+  @apply bg-white rounded-2xl shadow-soft p-6;
+}
+.btn {
+  @apply inline-flex items-center justify-center rounded-2xl px-4 py-2 font-medium border border-transparent transition duration-200;
+}
+.btn-primary {
+  @apply bg-brand-blue text-white hover:opacity-90 shadow-md;
+}
+.btn-outline {
+  @apply border-brand-blue text-brand-blue hover:bg-brand-blue/10;
+}
+.nav-link {
+  @apply text-sm font-medium hover:text-brand-blue transition-colors;
+}
+footer a { 
+  @apply hover:text-brand-blue transition-colors; 
+}
+
+/* Additional utility classes */
+.text-brand-blue {
+  color: var(--brand-blue);
+}
+.text-brand-orange {
+  color: var(--brand-orange);
+}
+.bg-brand-blue {
+  background-color: var(--brand-blue);
+}
+.bg-brand-orange {
+  background-color: var(--brand-orange);
+}
+.border-brand-blue {
+  border-color: var(--brand-blue);
+}
+.from-brand-blue {
+  --tw-gradient-from: var(--brand-blue);
+}
+.to-brand-orange {
+  --tw-gradient-to: var(--brand-orange);
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Modern animations and effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Modern card hover effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Modern gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-orange) 100%);
+}
+
+.gradient-bg-light {
+  background: linear-gradient(135deg, rgba(74, 168, 255, 0.1) 0%, rgba(255, 122, 0, 0.1) 100%);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Modern button effects */
+.btn-modern {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, var(--brand-blue), var(--brand-orange));
+  background-size: 200% 200%;
+  transition: all 0.3s ease;
+}
+
+.btn-modern:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Modern typography */
+.text-gradient {
+  background: linear-gradient(135deg, var(--brand-blue), var(--brand-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Hero section modern styling */
+.hero-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(74, 168, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(255, 122, 0, 0.1) 0%, transparent 50%);
+}

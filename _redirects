@@ -1,0 +1,3 @@
+# Example legacy redirects — update with your real old URLs
+/old-contact   /contact  301
+/old-home      /         301
