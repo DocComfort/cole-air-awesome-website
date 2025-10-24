@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="hidden md:flex items-center gap-6">
               <Link href="/#services" className="nav-link">Services</Link>
               <Link href="/projects" className="nav-link">Projects</Link>
-              <Link href="/#about" className="nav-link">About</Link>
+              <Link href="/about" className="nav-link">About</Link>
               <Link href="/contact" className="nav-link">Contact</Link>
               <a href={`tel:${BRAND.phoneHref}`} className="btn btn-primary">
                 {BRAND.phone}

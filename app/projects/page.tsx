@@ -1,5 +1,7 @@
 import { BRAND } from "@/lib/brand";
 import Section from "@/components/Section";
+import PhotoGallery from "@/components/PhotoGallery";
+import { SAMPLE_JOB_PHOTOS, getJobPhotoPath, JOB_TYPES } from "@/lib/assets";
 
 export const metadata = {
   title: "Recent Projects | Cole Air, Inc. - HVAC Installations & Repairs",
@@ -218,6 +220,66 @@ export default function ProjectsPage() {
           </a>
         </div>
       </div>
+
+      {/* Job Photos Gallery */}
+      <Section 
+        title="Quality Workmanship Gallery" 
+        subtitle="See our professional installations, repairs, and completed projects"
+      >
+        <div className="space-y-8">
+          {/* Instructions for adding photos */}
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+            <h3 className="text-lg font-semibold text-blue-900 mb-3">📸 Add Your Job Photos</h3>
+            <p className="text-blue-700 mb-4">
+              Showcase your quality work by adding photos to the <code className="bg-blue-100 px-2 py-1 rounded">/assets/jobs/</code> folder.
+            </p>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 text-sm">
+              <div className="bg-white p-3 rounded border">
+                <strong>AC Installations:</strong><br />
+                <code>ac-installation-1.jpg</code>
+              </div>
+              <div className="bg-white p-3 rounded border">
+                <strong>Heating Repairs:</strong><br />
+                <code>heating-repair-1.jpg</code>
+              </div>
+              <div className="bg-white p-3 rounded border">
+                <strong>Commercial HVAC:</strong><br />
+                <code>commercial-hvac-1.jpg</code>
+              </div>
+              <div className="bg-white p-3 rounded border">
+                <strong>Before & After:</strong><br />
+                <code>before-after-1.jpg</code>
+              </div>
+              <div className="bg-white p-3 rounded border">
+                <strong>Equipment Rooms:</strong><br />
+                <code>equipment-room-1.jpg</code>
+              </div>
+              <div className="bg-white p-3 rounded border">
+                <strong>Emergency Repairs:</strong><br />
+                <code>emergency-repair-1.jpg</code>
+              </div>
+            </div>
+          </div>
+
+          {/* Placeholder Gallery */}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {SAMPLE_JOB_PHOTOS.map((photo, index) => (
+              <div key={index} className="bg-slate-100 rounded-lg p-6 text-center border-2 border-dashed border-slate-300">
+                <div className="w-full h-48 bg-slate-200 rounded-lg flex items-center justify-center mb-4">
+                  <div className="text-center text-slate-500">
+                    <div className="text-4xl mb-2">🏠</div>
+                    <p className="text-sm font-medium">{photo.title}</p>
+                    <p className="text-xs">{photo.description}</p>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-600">
+                  <code className="bg-slate-200 px-1 rounded">{photo.src}</code>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Section>
 
       {/* Why Choose Us for Your Project */}
       <Section title="Why Choose Cole Air for Your Next Project?">
