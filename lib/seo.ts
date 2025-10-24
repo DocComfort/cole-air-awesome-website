@@ -6,9 +6,9 @@ export function localBusinessJsonLd() {
     "@type": "HVACBusiness",
     "name": BRAND.company,
     "image": [
-      `${BRAND.url}/og-image.jpg`,
-      `${BRAND.url}/logo-large.jpg`,
-      `${BRAND.url}/team-photo.jpg`
+      `${BRAND.url}/og.jpg`,
+      `${BRAND.url}/logos/ColeAir_Logo_BGRemoved_Transparent_HighRes.png`,
+      `${BRAND.url}/logos/Cole Air Logo.jpg`
     ],
     "url": BRAND.url,
     "telephone": BRAND.phoneHref,

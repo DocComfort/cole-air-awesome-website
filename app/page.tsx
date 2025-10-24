@@ -4,6 +4,7 @@ import GoogleMap from "@/components/GoogleMap";
 import GoogleReviews from "@/components/GoogleReviews";
 import BookingWidget from "@/components/BookingWidget";
 import Script from "next/script";
+import Image from "next/image";
 import { localBusinessJsonLd, faqJsonLd } from "@/lib/seo";
 import { generateMetadata } from "@/lib/metadata";
 import { BRAND } from "@/lib/brand";
@@ -91,8 +92,22 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Booking Widget */}
-              <div className="animate-slide-in-right">
+              {/* Logo & Booking Widget */}
+              <div className="animate-slide-in-right space-y-6">
+                <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200 text-center">
+                  <Image 
+                    src="/logos/ColeAir_Logo_BGRemoved_Transparent_HighRes.png" 
+                    alt="Cole Air, Inc. - Professional HVAC Services"
+                    width={200}
+                    height={150}
+                    className="mx-auto h-24 w-auto mb-4"
+                    priority
+                  />
+                  <p className="text-sm text-slate-600">
+                    <strong className="text-brand-blue">Serving Lake Charles since 1985</strong><br />
+                    Your trusted HVAC professionals
+                  </p>
+                </div>
                 <BookingWidget />
               </div>
             </div>

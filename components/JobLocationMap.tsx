@@ -87,10 +87,10 @@ export default function JobLocationMap({
         map: mapInstance,
         title: 'Cole Air, Inc. - Headquarters',
         icon: {
-          url: '/logos/coleair-marker.png', // Custom Cole Air logo marker
-          scaledSize: new window.google.maps.Size(40, 40),
+          url: '/logos/25%_ColeAir_Inverted_Logo_BGRemoved_Transparent_HighRes.PNG', // Custom Cole Air logo marker
+          scaledSize: new window.google.maps.Size(32, 32),
           origin: new window.google.maps.Point(0, 0),
-          anchor: new window.google.maps.Point(20, 40)
+          anchor: new window.google.maps.Point(16, 32)
         }
       })
 

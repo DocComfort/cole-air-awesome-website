@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { BRAND } from "@/lib/brand";
 import Link from "next/link";
+import Image from "next/image";
 import { GoogleAnalytics, Hotjar, FacebookPixel } from "@/lib/analytics";
 
 export const metadata: Metadata = {
@@ -17,7 +18,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="border-b bg-white sticky top-0 z-50">
           <nav className="container flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <span className="inline-block h-8 w-8 rounded-full bg-gradient-to-br from-brand-blue to-brand-orange" />
+              <Image 
+                src="/logos/ColeAir_Logo_BGRemoved_Transparent_HighRes.png" 
+                alt="Cole Air, Inc. Logo"
+                width={40}
+                height={40}
+                className="h-10 w-auto"
+              />
               <div className="flex flex-col">
                 <span className="font-bold text-brand-blue">Cole Air</span>
                 <span className="text-xs text-slate-500">Since 1985</span>
@@ -48,7 +55,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {/* Company Info */}
               <div className="md:col-span-2">
                 <div className="flex items-center gap-2 mb-4">
-                  <span className="inline-block h-8 w-8 rounded-full bg-gradient-to-br from-brand-blue to-brand-orange" />
+                  <Image 
+                    src="/logos/ColeAir_Logo_BGRemoved_Transparent_HighRes.png" 
+                    alt="Cole Air, Inc. Logo"
+                    width={32}
+                    height={32}
+                    className="h-8 w-auto"
+                  />
                   <span className="font-bold text-brand-blue text-lg">Cole Air, Inc.</span>
                 </div>
                 <p className="text-slate-700 mb-4">
