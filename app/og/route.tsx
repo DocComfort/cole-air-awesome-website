@@ -9,43 +9,51 @@ export async function GET() {
   const blue = BRAND.colors.blue;
   const orange = BRAND.colors.orange;
 
+  // Style objects to avoid inline styles lint warnings
+  const containerStyle = {
+    width: `${width}px`,
+    height: `${height}px`,
+    display: 'flex',
+    flexDirection: 'column' as const,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    color: '#0f172a',
+    background: `linear-gradient(135deg, ${blue} 0%, ${orange} 100%)`,
+    padding: '64px',
+  };
+
+  const cardStyle = {
+    background: 'rgba(255,255,255,0.92)',
+    borderRadius: 24,
+    padding: '32px 40px',
+    maxWidth: 900,
+    boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+  };
+
+  const taglineStyle = { fontSize: 20, letterSpacing: 2, color: '#475569' };
+  const titleStyle = { fontSize: 64, fontWeight: 800, lineHeight: 1.1, marginTop: 8 };
+  const subtitleStyle = { fontSize: 28, marginTop: 12, color: '#0f172a' };
+  const featuresStyle = { display: 'flex', gap: 12, marginTop: 24, fontSize: 22, color: '#1e293b' };
+  const contactStyle = { marginTop: 24, fontSize: 22, color: '#0f172a' };
+
+  // Note: Inline styles are required for Open Graph image generation
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: `${width}px`,
-          height: `${height}px`,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-          color: '#0f172a',
-          background: `linear-gradient(135deg, ${blue} 0%, ${orange} 100%)`,
-          padding: '64px',
-        }}
-      >
-        <div
-          style={{
-            background: 'rgba(255,255,255,0.92)',
-            borderRadius: 24,
-            padding: '32px 40px',
-            maxWidth: 900,
-            boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
-          }}
-        >
-          <div style={{ fontSize: 20, letterSpacing: 2, color: '#475569' }}>Since {BRAND.founded}</div>
-          <div style={{ fontSize: 64, fontWeight: 800, lineHeight: 1.1, marginTop: 8 }}>
+      <div style={containerStyle}>
+        <div style={cardStyle}>
+          <div style={taglineStyle}>Since {BRAND.founded}</div>
+          <div style={titleStyle}>
             {BRAND.company}
           </div>
-          <div style={{ fontSize: 28, marginTop: 12, color: '#0f172a' }}>
+          <div style={subtitleStyle}>
             Premier HVAC Services in Lake Charles, LA
           </div>
-          <div style={{ display: 'flex', gap: 12, marginTop: 24, fontSize: 22, color: '#1e293b' }}>
+          <div style={featuresStyle}>
             <div>✅ 24/7 Emergency</div>
             <div>✅ Licensed & Insured</div>
             <div>✅ Free Estimates</div>
           </div>
-          <div style={{ marginTop: 24, fontSize: 22, color: '#0f172a' }}>
+          <div style={contactStyle}>
             Call {BRAND.phone}
           </div>
         </div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { trackServicePageView } from '@/lib/analytics'
 import { useJobLocations, JobLocation } from '@/hooks/useJobLocations'
 
@@ -133,7 +133,7 @@ export default function JobLocationMap({
   }, [showJobLocations])
 
   // Add job completion markers
-  const addJobMarkers = (mapInstance: any) => {
+  const addJobMarkers = useCallback((mapInstance: any) => {
     const filteredJobs = filterService === 'all' 
       ? jobLocations 
       : jobLocations.filter((job: JobLocation) => job.serviceType === filterService)
@@ -177,7 +177,7 @@ export default function JobLocationMap({
         trackServicePageView('job_location_clicked')
       })
     })
-  }
+  }, [jobLocations, filterService])
 
   // Create SVG marker for job locations
   const createJobMarkerSVG = (color: string) => {
@@ -261,7 +261,7 @@ export default function JobLocationMap({
       <div 
         ref={mapRef} 
         className="w-full"
-        style={{ height }}
+        style={{ height, minHeight: '400px' }}
       />
 
       {/* Legend */}
@@ -272,8 +272,7 @@ export default function JobLocationMap({
             {Object.entries(serviceColors).map(([service, color]) => (
               <div key={service} className="flex items-center">
                 <div 
-                  className="w-3 h-3 rounded-full mr-1"
-                  style={{ backgroundColor: color }}
+                  className={`w-3 h-3 rounded-full mr-1 service-color-${service}`}
                 />
                 <span className="text-gray-600 capitalize">
                   {service.replace('-', ' ')}
