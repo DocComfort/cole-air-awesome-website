@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-dom-props */
 import { ImageResponse } from 'next/og';
 import { BRAND } from '@/lib/brand';
 
@@ -37,6 +38,7 @@ export async function GET() {
   const contactStyle = { marginTop: 24, fontSize: 22, color: '#0f172a' };
 
   // Note: Inline styles are required for Open Graph image generation
+  // eslint-disable-next-line react/forbid-dom-props
   return new ImageResponse(
     (
       <div style={containerStyle}>

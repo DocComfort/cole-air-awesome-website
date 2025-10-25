@@ -6,6 +6,20 @@
       {
         "forbid": [">", "}"]
       }
+    ],
+    "react/forbid-dom-props": [
+      "error",
+      {
+        "forbid": []
+      }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["app/og/route.tsx", "components/JobLocationMap.tsx", "components/GoogleMap.tsx"],
+      "rules": {
+        "react/forbid-dom-props": "off"
+      }
+    }
+  ]
 }

@@ -130,6 +130,7 @@ export default function JobLocationMap({
     } else {
       initializeMap()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showJobLocations])
 
   // Add job completion markers
@@ -257,11 +258,12 @@ export default function JobLocationMap({
         </div>
       )}
 
-      {/* Map Container */}
+      {/* Map Container - Dynamic height required for Google Maps */}
       <div 
         ref={mapRef} 
         className="w-full"
-        style={{ height, minHeight: '400px' }}
+        // eslint-disable-next-line react/forbid-dom-props
+        style={{ height, minHeight: '400px' }} // Dynamic height needed for responsive maps
       />
 
       {/* Legend */}

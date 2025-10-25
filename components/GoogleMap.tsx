@@ -21,7 +21,6 @@ export default function GoogleMap({ className = "", height = "300px" }: GoogleMa
         referrerPolicy="no-referrer-when-downgrade"
         title="Cole Air Location - Lake Charles, LA"
         className="google-map-iframe"
-        style={{ height }}
       />
       
       {/* Overlay with business info */}
