@@ -41,7 +41,7 @@ export default function GoogleReviews() {
           <span className="text-slate-600">4.9 out of 5 (150+ reviews)</span>
         </div>
         <a
-          href={`https://www.google.com/search?q=${encodeURIComponent(BRAND.company + ' ' + BRAND.address.city)}&hl=en#lrd=0x863b901be736cbc5:0xe112292f0235be66,1,,,`}
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BRAND.company + ' ' + BRAND.address.street + ', ' + BRAND.address.city)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-outline text-sm"
@@ -82,7 +82,7 @@ export default function GoogleReviews() {
           Help others find quality HVAC service by sharing your experience
         </p>
         <a
-          href={`https://www.google.com/search?q=${encodeURIComponent(BRAND.company + ' ' + BRAND.address.city)}&hl=en#lrd=0x863b901be736cbc5:0xe112292f0235be66,3,,,`}
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(BRAND.company + ' ' + BRAND.address.street + ', ' + BRAND.address.city)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary"

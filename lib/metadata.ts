@@ -88,14 +88,14 @@ export function generateMetadata({
       description: ogDescription || siteDescription,
       url: canonical || BRAND.url,
       siteName: "Cole Air, Inc.",
-      images: [
-        {
-          url: ogImage || "/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: "Cole Air HVAC Services Lake Charles LA",
-        },
-      ],
+         images: [
+           {
+             url: ogImage || "/og-image.svg",
+             width: 1200,
+             height: 630,
+             alt: "Cole Air HVAC Services Lake Charles LA",
+           },
+         ],
       locale: "en_US",
       type: "website",
     },
@@ -103,7 +103,7 @@ export function generateMetadata({
       card: "summary_large_image",
       title: ogTitle || siteTitle,
       description: ogDescription || siteDescription,
-      images: [ogImage || "/og-image.jpg"],
+         images: [ogImage || "/og-image.svg"],
     },
     robots: {
       index: true,

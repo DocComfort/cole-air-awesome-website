@@ -51,6 +51,16 @@ npm run build
 npm start
 ```
 
+### Environment variables
+
+Set these in your hosting provider (or `.env.local`) to enable analytics:
+
+- `NEXT_PUBLIC_GA_ID` — Google Analytics 4 Measurement ID (e.g., G-XXXXXXXXXX)
+- `NEXT_PUBLIC_HOTJAR_ID` — Hotjar Site ID (numeric)
+- `NEXT_PUBLIC_FACEBOOK_PIXEL_ID` — Facebook Pixel ID
+
+Analytics are gated by a built-in cookie consent banner. Tracking scripts only load after the user accepts.
+
 ## 📱 Contact Information
 
 **Cole Air, Inc.**

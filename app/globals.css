@@ -14,6 +14,22 @@ html, body {
 body {
   @apply bg-[var(--bg)] text-[var(--fg)];
 }
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  width: auto;
+  height: auto;
+  z-index: 1000;
+  @apply bg-white text-[var(--fg)] px-4 py-2 rounded shadow;
+}
 .container {
   @apply max-w-6xl mx-auto px-4;
 }
@@ -147,6 +163,12 @@ html {
   background-position: right center;
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Ensure visible focus outline for accessibility */
+:focus-visible {
+  outline: 2px solid var(--brand-blue);
+  outline-offset: 2px;
 }
 
 /* Modern typography */

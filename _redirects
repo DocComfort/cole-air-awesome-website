@@ -1,3 +1,8 @@
-# Example legacy redirects — update with your real old URLs
+## Domain and protocol normalization (effective when custom domains are connected)
+http://coleair.net/*           https://www.coleair.net/:splat  301!
+http://www.coleair.net/*       https://www.coleair.net/:splat  301!
+https://coleair.net/*          https://www.coleair.net/:splat  301!
+
+## Example legacy redirects — update with your real old URLs
 /old-contact   /contact  301
 /old-home      /         301

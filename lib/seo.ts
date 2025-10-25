@@ -3,7 +3,7 @@ import { BRAND } from "./brand";
 export function localBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "HVACBusiness",
+    "@type": ["HVACBusiness", "LocalBusiness"],
     "name": BRAND.company,
     "image": [
       `${BRAND.url}/og.jpg`,
