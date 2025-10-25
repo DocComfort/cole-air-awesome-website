@@ -3,7 +3,9 @@ import "./globals.css";
 import { BRAND } from "@/lib/brand";
 import Link from "next/link";
 import Image from "next/image";
-import { GoogleAnalytics, Hotjar, FacebookPixel } from "@/lib/analytics";
+import AnalyticsLoader from "@/components/AnalyticsLoader";
+import ConsentBanner from "@/components/ConsentBanner";
+import CookiePreferences from "@/components/CookiePreferences";
 
 export const metadata: Metadata = {
   title: "Cole Air, Inc. | Premier HVAC Services in Lake Charles, LA",
@@ -15,6 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body style={{ ["--brand-blue" as any]: BRAND.colors.blue, ["--brand-orange" as any]: BRAND.colors.orange }}>
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <header className="border-b bg-white sticky top-0 z-50">
           <nav className="container flex h-16 items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
@@ -47,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </nav>
         </header>
         
-        <main className="container py-10">{children}</main>
+  <main id="main-content" className="container py-10">{children}</main>
         
         <footer className="bg-slate-50 border-t">
           <div className="container py-10">
@@ -119,10 +122,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
         
-        {/* Analytics and Tracking */}
-        <GoogleAnalytics />
-        <Hotjar />
-        <FacebookPixel />
+        {/* Consent & Analytics */}
+        <ConsentBanner />
+        <CookiePreferences />
+        <AnalyticsLoader />
       </body>
     </html>
   );

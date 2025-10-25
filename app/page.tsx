@@ -64,7 +64,7 @@ export default function Home() {
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a href={`tel:${BRAND.phoneHref}`} className="btn btn-modern text-white group text-lg">
                     <span className="flex items-center gap-2">
-                      � Emergency: {BRAND.phone}
+                      🚨 Emergency: {BRAND.phone}
                       <span className="group-hover:translate-x-1 transition-transform">→</span>
                     </span>
                   </a>
@@ -303,7 +303,7 @@ export default function Home() {
             
             <div className="flex gap-4 group">
               <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center text-xl group-hover:bg-brand-blue group-hover:text-white transition-all">
-                �
+                🛠️
               </div>
               <div>
                 <h3 className="font-semibold mb-2 group-hover:text-brand-blue transition-colors">Tailored Maintenance Plans</h3>

@@ -3,6 +3,8 @@
 
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import Script from 'next/script'
+import { BRAND } from '@/lib/brand'
 
 declare global {
   interface Window {
@@ -11,29 +13,36 @@ declare global {
   }
 }
 
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX' // Replace with your actual GA4 measurement ID
+// Read analytics IDs from environment
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_ID || ''
+const HOTJAR_ID = process.env.NEXT_PUBLIC_HOTJAR_ID || ''
+const FACEBOOK_PIXEL_ID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID || ''
 
 // Initialize Google Analytics
 export function GoogleAnalytics() {
+  if (!GA_MEASUREMENT_ID) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn('[Analytics] NEXT_PUBLIC_GA_ID is not set. Google Analytics will not load.')
+    }
+    return null
+  }
   return (
     <>
-      <script
-        async
+      <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
       />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_title: document.title,
-              page_location: window.location.href,
-            });
-          `,
-        }}
-      />
+      <Script id="ga-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);} 
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}', {
+            page_title: document.title,
+            page_location: window.location.href,
+          });
+        `}
+      </Script>
     </>
   )
 }
@@ -43,7 +52,7 @@ export function useGoogleAnalytics() {
   const pathname = usePathname()
 
   useEffect(() => {
-    if (typeof window.gtag !== 'undefined') {
+    if (typeof window.gtag !== 'undefined' && GA_MEASUREMENT_ID) {
       window.gtag('config', GA_MEASUREMENT_ID, {
         page_path: pathname,
       })
@@ -109,8 +118,10 @@ export function TrackablePhoneLink({
 
   return (
     <a
-      href="tel:3378556278"
+      href={`tel:${BRAND.phoneHref}`}
       className={className}
+      aria-label={`Call ${BRAND.company} at ${BRAND.phone}${emergency ? ' for emergency service' : ''}`}
+      title={`Call ${BRAND.company} at ${BRAND.phone}`}
       onClick={handleClick}
     >
       {children}
@@ -213,12 +224,17 @@ export function TrackedContactForm({ serviceType }: { serviceType?: string }) {
 // Heat map integration (Hotjar)
 export function Hotjar() {
   useEffect(() => {
-    // Replace 'YOUR_HOTJAR_ID' with your actual Hotjar site ID
+    if (!HOTJAR_ID) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('[Analytics] NEXT_PUBLIC_HOTJAR_ID is not set. Hotjar will not load.')
+      }
+      return
+    }
     const script = document.createElement('script')
     script.innerHTML = `
       (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:YOUR_HOTJAR_ID,hjsv:6};
+        h._hjSettings={hjid:${Number(HOTJAR_ID)},hjsv:6};
         a=o.getElementsByTagName('head')[0];
         r=o.createElement('script');r.async=1;
         r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
@@ -234,6 +250,12 @@ export function Hotjar() {
 // Facebook Pixel for retargeting
 export function FacebookPixel() {
   useEffect(() => {
+    if (!FACEBOOK_PIXEL_ID) {
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn('[Analytics] NEXT_PUBLIC_FACEBOOK_PIXEL_ID is not set. Facebook Pixel will not load.')
+      }
+      return
+    }
     const script = document.createElement('script')
     script.innerHTML = `
       !function(f,b,e,v,n,t,s)
@@ -244,7 +266,7 @@ export function FacebookPixel() {
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', 'YOUR_PIXEL_ID');
+      fbq('init', '${FACEBOOK_PIXEL_ID}');
       fbq('track', 'PageView');
     `
     document.head.appendChild(script)
