@@ -289,12 +289,12 @@ export default function AboutPage() {
             <div className="mt-10 flex justify-center">
               <div className="max-w-xs">
                 <TeamMember
-                  name="You!"
-                  title="Join Our Team!"
-                  photo="/assets/team/you.jpg"
-                  experience="We provide training"
-                  certifications={["We can help you get certified!"]}
-                  href="/contact?form=employment"
+            name="You!"
+            title="Join Our Team!"
+            photo="/assets/team/you.jpg"
+            experience="We provide training"
+            certifications={["We can help you get certified!"]}
+            href="/careers"
                 />
               </div>
             </div>
