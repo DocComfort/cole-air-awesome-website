@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface TeamMemberProps {
   name: string;
@@ -9,6 +10,7 @@ interface TeamMemberProps {
   experience?: string;
   isFounder?: boolean;
   isOwner?: boolean;
+  href?: string;
 }
 
 export default function TeamMember({
@@ -19,13 +21,19 @@ export default function TeamMember({
   certifications = [],
   experience,
   isFounder = false,
-  isOwner = false
+  isOwner = false,
+  href
 }: TeamMemberProps) {
   const badgeColor = isFounder ? "bg-brand-orange" : isOwner ? "bg-brand-blue" : "bg-slate-600";
   const badgeText = isFounder ? "Founder" : isOwner ? "Owner" : "Team Member";
+  const Wrapper = href ? Link : "div";
+  const wrapperProps = href
+    ? { href, className: "group block focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-3xl" }
+    : { className: "group" };
 
   return (
-    <div className="card p-6 text-center group hover:shadow-lg transition-shadow">
+    <Wrapper {...wrapperProps}>
+      <div className="card p-6 text-center transition-shadow hover:shadow-lg group-hover:shadow-lg">
       <div className="relative mb-6">
         <div className="w-32 h-32 mx-auto rounded-full overflow-hidden bg-slate-100 border-4 border-white shadow-lg">
           <Image
@@ -80,6 +88,7 @@ export default function TeamMember({
         )}
       </div>
     </div>
+    </Wrapper>
   );
 }
 

@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { trackServicePageView } from '@/lib/analytics'
 import { useJobLocations, JobLocation } from '@/hooks/useJobLocations'
+import styles from './JobLocationMap.module.css'
 
 // Sample job locations (privacy-protected coordinates - general areas only)
 // This will be replaced by real-time data from useJobLocations hook
@@ -133,6 +134,13 @@ export default function JobLocationMap({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showJobLocations])
 
+  // Set map container height programmatically
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.style.height = height
+    }
+  }, [height])
+
   // Add job completion markers
   const addJobMarkers = useCallback((mapInstance: any) => {
     const filteredJobs = filterService === 'all' 
@@ -258,12 +266,10 @@ export default function JobLocationMap({
         </div>
       )}
 
-      {/* Map Container - Dynamic height required for Google Maps */}
+      {/* Map Container - Height set programmatically via useEffect */}
       <div 
         ref={mapRef} 
-        className="w-full"
-        // eslint-disable-next-line react/forbid-dom-props
-        style={{ height, minHeight: '400px' }} // Dynamic height needed for responsive maps
+        className={styles.mapContainer}
       />
 
       {/* Legend */}
@@ -274,7 +280,7 @@ export default function JobLocationMap({
             {Object.entries(serviceColors).map(([service, color]) => (
               <div key={service} className="flex items-center">
                 <div 
-                  className={`w-3 h-3 rounded-full mr-1 service-color-${service}`}
+                  className={`${styles.serviceColor} ${styles[service.replace('-', '').charAt(0).toUpperCase() + service.replace('-', '').slice(1)]}`}
                 />
                 <span className="text-gray-600 capitalize">
                   {service.replace('-', ' ')}

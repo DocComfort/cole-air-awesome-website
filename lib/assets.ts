@@ -9,8 +9,8 @@ export interface AssetInfo {
 
 export const ASSET_PATHS = {
   // Team photos
-  founder: '/assets/team/founder.jpg',
-  currentOwner: '/assets/team/current-owner.jpg',
+  founder: '/assets/team/brack.jpg',
+  currentOwner: '/assets/team/dustin.jpg',
   teamGroup: '/assets/team/team-group.jpg',
   
   // Job photos
