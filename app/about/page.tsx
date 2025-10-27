@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Section from "@/components/Section";
-import TeamMember, { TeamMemberPlaceholder } from "@/components/TeamMember";
+import TeamMember from "@/components/TeamMember";
 import PhotoGallery from "@/components/PhotoGallery";
 import { generateMetadata } from "@/lib/metadata";
 import { BRAND } from "@/lib/brand";
@@ -106,16 +106,21 @@ export default function AboutPage() {
           <div className="card p-8 gradient-bg-light border-brand-blue/20">
             <div className="grid gap-8 lg:grid-cols-2 items-center">
               <div className="bg-white rounded-2xl p-6 border border-slate-200">
-                <div className="w-full h-80 bg-slate-100 rounded-xl flex items-center justify-center border-2 border-dashed border-slate-300">
-                  <div className="text-center text-slate-500">
-                    <div className="text-5xl mb-4">👨‍🔧</div>
-                    <p className="font-medium">Founder Photo</p>
-                    <p className="text-sm">Place in /assets/team/founder.jpg</p>
-                    <p className="text-xs mt-2">Your father who started the company</p>
-                  </div>
+                <div className="relative w-full h-80 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                  <Image
+                    src={ASSET_PATHS.founder}
+                    alt="Founder of Cole Air, Inc."
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
+                    priority
+                  />
                 </div>
+                <p className="text-xs text-center text-slate-500 mt-3">
+
+                </p>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-6">  
                 <div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">
                     The Founding Vision
@@ -186,14 +191,17 @@ export default function AboutPage() {
                 </div>
               </div>
               <div className="bg-white rounded-2xl p-6 border border-slate-200 lg:order-1">
-                <div className="w-full h-80 bg-slate-100 rounded-xl flex items-center justify-center border-2 border-dashed border-slate-300">
-                  <div className="text-center text-slate-500">
-                    <div className="text-5xl mb-4">👨‍💼</div>
-                    <p className="font-medium">Your Photo</p>
-                    <p className="text-sm">Place in /assets/team/current-owner.jpg</p>
-                    <p className="text-xs mt-2">Current company leadership</p>
-                  </div>
+                <div className="relative w-full h-80 rounded-xl overflow-hidden border border-slate-200 shadow-sm">
+                  <Image
+                    src={ASSET_PATHS.currentOwner}
+                    alt="Current Cole Air leadership"
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 420px, (min-width: 768px) 50vw, 100vw"
+                  />
                 </div>
+                <p className="text-xs text-center text-slate-500 mt-3">
+                </p>
               </div>
             </div>
           </div>
@@ -207,16 +215,27 @@ export default function AboutPage() {
           <div className="md:col-span-2 lg:col-span-3 mb-8">
             <h3 className="text-2xl font-bold text-center mb-8 text-slate-900">Leadership Team</h3>
             <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
-              <TeamMemberPlaceholder 
-                name="Your Father's Name"
-                title="Founder & Master Technician"
-                photoPath="/assets/team/founder.jpg"
+              <TeamMember 
+                name="Dustin Cole"
+                title="Chief Disruptor"
+                photo="/assets/team/dustin.jpg"
+                isOwner
               />
-              <TeamMemberPlaceholder 
-                name="Your Name"
-                title="Owner & Operations Manager"
-                photoPath="/assets/team/current-owner.jpg"
+              <TeamMember
+                name="Hannah Cole"
+                title="Operations Manager"
+                photo="/assets/team/hannah.jpg"
+                isOwner
               />
+            </div>
+            <div className="mt-10 flex justify-center">
+              <div className="max-w-xs">
+                <TeamMember
+                  name="Beth Leblanc"
+                  title="Customer Service Representative"
+                  photo="/assets/team/beth.jpg"
+                />
+              </div>
             </div>
           </div>
 
@@ -224,14 +243,60 @@ export default function AboutPage() {
           <div className="md:col-span-2 lg:col-span-3">
             <h3 className="text-2xl font-bold text-center mb-8 text-slate-900">Certified Technicians & Staff</h3>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {[1, 2, 3, 4, 5, 6].map((num) => (
-                <TeamMemberPlaceholder 
-                  key={num}
-                  name={`Team Member ${num}`}
-                  title="HVAC Technician"
-                  photoPath={getTeamMemberPath(num)}
+              <TeamMember
+                name="Noah Hoots"
+                title="HVAC Technician"
+                photo="/assets/team/noah.jpg"
+                experience="15+ years"
+                certifications={["EPA Certified"]}
+              />
+              <TeamMember
+                name="Robert Young"
+                title="HVAC Technician"
+                photo="/assets/team/robert.jpg"
+                experience="20+ years"
+                certifications={["EPA Certified"]}
+              />
+              <TeamMember
+                name="Blair Lackey"
+                title="HVAC Technician"
+                photo="/assets/team/blair.jpg"
+                experience="8+ years"
+                certifications={["EPA Certified"]}
+              />
+                 <TeamMember
+                name="Mike Chesson"
+                title="Lead HVAC Installer"
+                photo="/assets/team/mike.jpg"
+                experience="10+ years"
+                certifications={["EPA Certified"]}
                 />
-              ))}
+                  <TeamMember
+                name="Kaiden Griffiths"
+                title="HVAC Apprentice"
+                photo="/assets/team/kaiden.jpg"
+                experience="-1 year"
+                certifications={["EPA Certified"]}
+                />
+              <TeamMember
+                name="Lorin Monney"
+                title="HVAC Apprentice"   
+                photo="/assets/team/lorin.jpg"
+                experience="1+ years"
+                certifications={["EPA Certified"]}
+              />
+            </div>
+            <div className="mt-10 flex justify-center">
+              <div className="max-w-xs">
+                <TeamMember
+                  name="You!"
+                  title="Join Our Team!"
+                  photo="/assets/team/you.jpg"
+                  experience="We provide training"
+                  certifications={["We can help you get certified!"]}
+                  href="/contact?form=employment"
+                />
+              </div>
             </div>
           </div>
         </div>

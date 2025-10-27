@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { trackServicePageView } from '@/lib/analytics'
 import { useJobLocations, JobLocation } from '@/hooks/useJobLocations'
+import styles from './JobLocationMap.module.css'
 
 // Sample job locations (privacy-protected coordinates - general areas only)
 // This will be replaced by real-time data from useJobLocations hook
@@ -130,10 +131,18 @@ export default function JobLocationMap({
     } else {
       initializeMap()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showJobLocations])
 
+  // Set map container height programmatically
+  useEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.style.height = height
+    }
+  }, [height])
+
   // Add job completion markers
-  const addJobMarkers = (mapInstance: any) => {
+  const addJobMarkers = useCallback((mapInstance: any) => {
     const filteredJobs = filterService === 'all' 
       ? jobLocations 
       : jobLocations.filter((job: JobLocation) => job.serviceType === filterService)
@@ -177,7 +186,7 @@ export default function JobLocationMap({
         trackServicePageView('job_location_clicked')
       })
     })
-  }
+  }, [jobLocations, filterService])
 
   // Create SVG marker for job locations
   const createJobMarkerSVG = (color: string) => {
@@ -257,11 +266,10 @@ export default function JobLocationMap({
         </div>
       )}
 
-      {/* Map Container */}
+      {/* Map Container - Height set programmatically via useEffect */}
       <div 
         ref={mapRef} 
-        className="w-full"
-        style={{ height }}
+        className={styles.mapContainer}
       />
 
       {/* Legend */}
@@ -272,8 +280,7 @@ export default function JobLocationMap({
             {Object.entries(serviceColors).map(([service, color]) => (
               <div key={service} className="flex items-center">
                 <div 
-                  className="w-3 h-3 rounded-full mr-1"
-                  style={{ backgroundColor: color }}
+                  className={`${styles.serviceColor} ${styles[service.replace('-', '').charAt(0).toUpperCase() + service.replace('-', '').slice(1)]}`}
                 />
                 <span className="text-gray-600 capitalize">
                   {service.replace('-', ' ')}

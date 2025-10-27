@@ -1,0 +1,35 @@
+.mapContainer {
+  width: 100%;
+  min-height: 400px;
+}
+
+.serviceColor {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+}
+
+.acRepair {
+  background-color: #3B82F6;
+}
+
+.heatingRepair {
+  background-color: #EF4444;
+}
+
+.installation {
+  background-color: #10B981;
+}
+
+.maintenance {
+  background-color: #F59E0B;
+}
+
+.commercial {
+  background-color: #8B5CF6;
+}
+
+.emergency {
+  background-color: #DC2626;
+}
