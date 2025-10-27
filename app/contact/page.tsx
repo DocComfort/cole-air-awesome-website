@@ -39,7 +39,7 @@ export default function ContactPage() {
             <p className="text-slate-700 mb-6">
               Get a free estimate for installations or schedule service. We respond quickly with competitive pricing and honest recommendations.
             </p>
-            <form name="contact" method="POST" data-netlify="true" className="grid gap-4">
+              <form name="contact" method="POST" action="/__forms.html" className="grid gap-4">
               <input type="hidden" name="form-name" value="contact" />
               
               <div className="grid gap-4 md:grid-cols-2">
