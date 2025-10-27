@@ -1,26 +1,35 @@
 "use client";
 
 import { BRAND } from "@/lib/brand";
+import React, { useEffect } from "react";
+
+// TypeScript declaration for Housecall Pro widget
+declare global {
+  interface Window {
+    HCPWidget?: { openModal: () => void };
+  }
+}
 
 export default function BookingWidget() {
   const handleBooking = (serviceType: string) => {
-    // In a real implementation, this would integrate with your booking system
-    // For now, we'll create a pre-filled contact form
-    const subject = encodeURIComponent(`${serviceType} Service Request`);
-    const body = encodeURIComponent(`Hi Cole Air,
-
-I would like to schedule ${serviceType.toLowerCase()} service.
-
-Please contact me to arrange an appointment.
-
-Thank you!`);
-    
-    window.location.href = `/contact?service=${encodeURIComponent(serviceType)}&subject=${subject}`;
+    const url = `https://book.housecallpro.com/book/Cole-Air/c89fdc638e684fee8d0f0910abd4c96c?v2=true&service=${encodeURIComponent(serviceType)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   const emergencyCall = () => {
     window.location.href = `tel:${BRAND.phoneHref}`;
   };
+
+  useEffect(() => {
+    // Only load script if not already present
+    if (!document.getElementById("hcp-script")) {
+      const script = document.createElement("script");
+      script.id = "hcp-script";
+      script.async = true;
+      script.src = "https://online-booking.housecallpro.com/script.js?token=c89fdc638e684fee8d0f0910abd4c96c&orgName=Cole-Air";
+      document.body.appendChild(script);
+    }
+  }, []);
 
   return (
     <div className="space-y-4">
@@ -43,8 +52,9 @@ Thank you!`);
 
       {/* Regular Service Booking */}
       <div className="card">
-        <h3 className="font-semibold mb-4 text-center">Schedule Service</h3>
+        <h3 className="font-semibold mb-4 text-center">Book Your Services Online</h3>
         <div className="grid gap-3">
+
           <button
             onClick={() => handleBooking("AC Repair")}
             className="btn btn-outline text-left justify-start p-3"
@@ -55,7 +65,6 @@ Thank you!`);
               <div className="text-xs text-slate-500">Cooling system issues</div>
             </div>
           </button>
-          
           <button
             onClick={() => handleBooking("Heating Repair")}
             className="btn btn-outline text-left justify-start p-3"
@@ -66,7 +75,6 @@ Thank you!`);
               <div className="text-xs text-slate-500">Furnace, heat pump issues</div>
             </div>
           </button>
-          
           <button
             onClick={() => handleBooking("Installation")}
             className="btn btn-outline text-left justify-start p-3"
@@ -77,7 +85,6 @@ Thank you!`);
               <div className="text-xs text-slate-500">Complete system replacement</div>
             </div>
           </button>
-          
           <button
             onClick={() => handleBooking("Maintenance")}
             className="btn btn-outline text-left justify-start p-3"
@@ -89,7 +96,6 @@ Thank you!`);
             </div>
           </button>
         </div>
-        
         <div className="mt-4 pt-4 border-t text-center">
           <p className="text-slate-600 text-sm mb-3">
             Need help choosing? Talk to our experts

@@ -2,12 +2,20 @@ import ServiceCard from "@/components/ServiceCard";
 import Section from "@/components/Section";
 import GoogleMap from "@/components/GoogleMap";
 import GoogleReviews from "@/components/GoogleReviews";
+import CheckServiceAvailabilityButton from "@/components/CheckServiceAvailabilityButton";
 import BookingWidget from "@/components/BookingWidget";
 import Script from "next/script";
 import Image from "next/image";
 import { localBusinessJsonLd, faqJsonLd } from "@/lib/seo";
 import { generateMetadata } from "@/lib/metadata";
 import { BRAND } from "@/lib/brand";
+import React, { useEffect } from "react";
+
+declare global {
+  interface Window {
+    HCPWidget?: { openModal: () => void };
+  }
+}
 
 export const metadata = generateMetadata({
   title: "Premier HVAC Services Lake Charles, LA",
@@ -25,7 +33,13 @@ export const metadata = generateMetadata({
   ogDescription: "Trusted HVAC experts serving Lake Charles & Southwest Louisiana for 40+ years. Emergency service available 24/7. Free estimates on installations!"
 });
 
+
 export default function Home() {
+  function handleBooking(serviceType: string): void {
+    const url = `https://book.housecallpro.com/book/Cole-Air/c89fdc638e684fee8d0f0910abd4c96c?v2=true&service=${encodeURIComponent(serviceType)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+
   return (
     <>
       <Script
@@ -435,11 +449,22 @@ export default function Home() {
         <div className="card bg-slate-50 text-center mt-6">
           <p className="text-slate-700 mb-4">
             Don't see your area listed? We may still serve you! 
-            Call us to check if we service your location.
+            Click Or Call us below to check if we service your location.
           </p>
-          <a href={`tel:${BRAND.phoneHref}`} className="btn btn-primary">
-            Check Service Availability
-          </a>
+            <div className="flex flex-row gap-4 items-stretch mt-4">
+              <div className="flex-1">
+                <CheckServiceAvailabilityButton />
+              </div>
+              <a
+                href={`tel:${BRAND.phoneHref}`}
+                className="btn btn-outline text-left justify-start p-3 w-full flex-1"
+              >
+                <span className="text-xl mr-3">📞</span>
+                <div>
+                  <div className="font-medium">Call to Check Service Area</div>
+                </div>
+              </a>
+            </div>
         </div>
       </Section>
 

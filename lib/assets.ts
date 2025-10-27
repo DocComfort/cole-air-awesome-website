@@ -68,7 +68,7 @@ export const JOB_TYPES = {
 // Sample data for team members (to be replaced with actual data)
 export const SAMPLE_TEAM_DATA = [
   {
-    name: "Add Your Father's Name",
+    name: "John-Braxton-Brack-Cole",
     title: "Founder & HVAC Expert",
     photo: ASSET_PATHS.founder,
     bio: "Founded Cole Air in 1985 with a vision to provide honest, reliable HVAC services to Lake Charles families.",
@@ -77,7 +77,7 @@ export const SAMPLE_TEAM_DATA = [
     certifications: ["Master HVAC Technician", "EPA Certified"]
   },
   {
-    name: "Add Your Name",
+    name: "Dustin Cole",
     title: "Owner & Operations Manager",
     photo: ASSET_PATHS.currentOwner,
     bio: "Continuing the family tradition of excellence while bringing modern technology and business practices to Cole Air.",
