@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="brand-css-vars">
+      <body style={{ ["--brand-blue" as any]: BRAND.colors.blue, ["--brand-orange" as any]: BRAND.colors.orange }}>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <header className="border-b bg-white sticky top-0 z-50">
           <nav className="container flex h-16 items-center justify-between">
